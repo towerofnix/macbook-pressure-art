@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wow</title>
+    <style>
+      body, html {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        overflow: hidden;
+
+        font-family: -apple-system, 'Helvetica Neue', 'Helvetica',
+          sans-serif;
+      }
+
+      #debug-canvas {
+        border: 1px solid #CCC;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #F6F6F6;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+      #debug-canvas.shown {
+        opacity: 1;
+      }
+
+      #art-container {
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+      }
+
+      #art-canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #controls {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+      }
+
+      .control-row {
+        display: flex;
+        height: 30px;
+        align-items: center;
+      }
+
+      .control-row span {
+        margin-right: 10px;
+      }
+
+      #info {
+        position: fixed;
+        top: 0;
+        left: -350px;
+        opacity: 0;
+        max-width: 350px;
+        height: 100%;
+        overflow: scroll;
+        background-color: rgb(225, 225, 225);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        box-sizing: border-box;
+
+        transition: left 0.4s, opacity 0.4s;
+      }
+
+      #info-overlay {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background: rgba(225, 225, 225, 0.8);
+        opacity: 0;
+
+        transition: opacity 0.4s;
+      }
+
+      #info-overlay.shown {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      #info.shown {
+        left: 0;
+        opacity: 1;
+      }
+
+      #info-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        width: 30px;
+        height: 30px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(185, 185, 185, 0.8);
+        border-radius: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+
+        opacity: 0.4;
+        transition: opacity 0.05s;
+      }
+
+      #info-button:hover {
+        opacity: 1;
+      }
+
+      a {
+        color: #6699DD;
+        text-decoration: none
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id='debug-canvas' width='200' height='100'></canvas>
+
+    <div id='art-container'>
+      <canvas id='art-canvas' width='400' height='400'></canvas>
+    </div>
+
+    <div id='controls'>
+      <div class='control-row'>
+        <span>Size:</span> <input type='range' id='size-control'>
+      </div>
+    </div>
+    <div id='info-button'>
+      ?
+    </div>
+    <div id='info-overlay'></div>
+    <div id='info'>
+      <h1>Pressure Sensitive Art (for the MacBook Pro)</h1>
+      <p>
+        This a simple demonstration of Safari's Force Touch API - a drawing program, of course! This demo is as simple and barebones as you could like: you get a brush and the size of the stroke is based on the pressure you put on your trackpad.
+      </p>
+      <p>
+        It'll only work on Safari - version 10, I believe, on macOS Sierra. Those are currently the latest versions of Safari and macOS, anyways, so it's not like you have to get some super beta edition to try this!
+      </p>
+      <p>
+        It should also be relatively obvious that you'll need a MacBook to use this. Unfortunately Safari is the only browser that supports trackpad sensitivity at all, and that's through a <a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/Events/webkitmouseforcechanged'>"proprietary"</a> API, even though there's an <a target='_blank' href="https://www.w3.org/TR/pointerevents/">a standard</a> for various touch events (including a <code>pressure</code> property).
+      </p>
+      <p>
+        <button id='hide-info'>Okay, but let me try it!</button>
+        <button id='toggle-debug'>Toggle the FORCE DEBUGGER</button>
+      </p>
+    </div>
+    <script src='main.js'></script>
+  </body>
+</html>
