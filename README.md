@@ -1,5 +1,7 @@
 # Pressure Sensitive Art (for the MacBook Pro)
 
+![Banner](banner.png)
+
 **This project runs online, try it [here](https://liam4.github.io/macbook-pressure-art/)!** (If you have a MacBook and Safari 10.)
 
 This a simple demonstration of Safari's Force Touch API - a drawing program, of course! This demo is as simple and barebones as you could like: you get a brush and the size of the stroke is based on the pressure you put on your trackpad.
